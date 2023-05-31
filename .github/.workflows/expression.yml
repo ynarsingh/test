@@ -1,0 +1,17 @@
+name: Expressions implementation
+on: push
+env:
+  appName: CounterApp
+
+jobs:
+  build_job:
+    runs-on: windows-latest
+    steps:
+      - name: Execute Command
+        run: echo "Build Automation for Application:${{ env.appName }}"
+      - name: Executing Build Step
+        id: exec
+        run: exit 1
+      - name: Check if previous steps is success or failure
+        run: echo "Running on failure"
+        if: ${{ failure() && steps.exec.conclusion == 'failure' }}
